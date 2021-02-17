@@ -1,0 +1,26 @@
+$font-family: "arial";
+
+body {
+  font-family: $font-family;
+}
+
+.container {
+  display: flex;
+  font-weight: 600;
+}
+
+.footer-top {
+  display: block;
+}
+
+.header-top {
+  display: block;
+}
+
+.d-block {
+  display: block;
+}
+
+.d-none {
+  display: none;
+}
