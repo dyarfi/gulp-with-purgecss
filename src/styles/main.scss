@@ -1,26 +1,67 @@
-$font-family: "arial";
+// Variables everything
+// @import 'common/variables';
+// @import 'common/functions';
 
-body {
-  font-family: $font-family;
-}
+// Import Vendor dependencies
+// @import 'common/vendor';
 
-.container {
-  display: flex;
-  font-weight: 600;
-}
+// Common
+// @import 'common/foundation';
+// @import 'common/typography';
+// @import 'common/global';
 
-.footer-top {
-  display: block;
-}
+// Components
+// @import 'components/components';
 
-.header-top {
-  display: block;
-}
+// Layouts
+// @import 'layouts/layouts';
 
-.d-block {
-  display: block;
-}
+// Pages
+// @import 'pages/pages';
 
-.d-none {
-  display: none;
-}
+// Themes
+// @import 'themes/themes';
+
+// Theme variables
+@import "vendors/variables";
+
+// All vendors function and variables
+@import "vendors/bootstrap/functions";
+@import "vendors/bootstrap/variables";
+
+// Set unique-id ver
+$ver: unique_id();
+
+// Theme color
+$theme-color: #cc9900 !default; // #cc9900
+$theme: $theme-color !default;
+
+// Background variables light
+$light-primary: lighten($primary, 25%);
+$light-success: lighten($success, 25%);
+$light-warning: lighten($warning, 25%);
+$light-danger: lighten($danger, 25%);
+$light-info: lighten($info, 25%);
+$light-dark: lighten($dark, 25%);
+$light-theme: lighten($theme, 25%);
+$light-secondary: lighten($secondary, 25%);
+
+// Background variables dark
+$dark-primary: darken($primary, 28%);
+$dark-success: darken($success, 28%);
+$dark-warning: darken($warning, 28%);
+$dark-danger: darken($danger, 28%);
+$dark-info: darken($info, 15%);
+$dark-secondary: darken($secondary, 15%);
+$dark-mute: darken($dark, 45%);
+$dark-theme: darken($theme, 32%);
+
+// Theme base
+@import "themes/base/path";
+@import "themes/base/placeholder";
+@import "themes/base/utility";
+@import "themes/base/base";
+
+// Theme components
+@import "themes/components/cards";
+@import "vendors/global";

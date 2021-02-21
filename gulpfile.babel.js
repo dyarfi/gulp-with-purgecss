@@ -28,6 +28,7 @@ const paths = {
     src: "src/data/",
   },
   styles: {
+    dir: "src/styles/",
     src: "src/styles/**/*.scss",
     dest: "build/styles/",
   },
@@ -36,6 +37,7 @@ const paths = {
     dest: "build/scripts/",
   },
   templates: {
+    dir: "src/templates/",
     src: "src/templates/**/*.twig",
     dest: "build/",
   },
@@ -47,7 +49,11 @@ export const cleanAssets = () => del([paths.assets.dest]);
 // styles
 export function styles() {
   return gulp
-    .src(paths.styles.src)
+    .src([
+      paths.styles.src,
+      "!" + paths.styles.dir + "themes/**/*.scss",
+      "!" + paths.styles.dir + "vendors/**/*.scss",
+    ])
     .pipe(sourcemaps.init())
     .pipe(
       sass({
@@ -100,7 +106,12 @@ export function scripts() {
 export function templates() {
   return (
     gulp
-      .src([paths.templates.src])
+      .src([
+        paths.templates.src,
+        "!" + paths.templates.dir + "_blocks/**/*.twig",
+        "!" + paths.templates.dir + "_includes/**/*.twig",
+        "!" + paths.templates.dir + "_layouts/**/*.twig",
+      ])
       // Stay live and reload on error
       .pipe(
         plumber({
@@ -114,15 +125,33 @@ export function templates() {
       .pipe(
         data(function (file) {
           return JSON.parse(
-            fs.readFileSync(paths.data.src + path.basename(file.path) + ".json")
+            fs.readFileSync(
+              paths.data.src +
+                path.basename(file.path.replace(".twig", "")) +
+                ".json"
+            )
           );
+        }).on("error", function (err) {
+          process.stderr.write(err.message + "\n");
+          this.emit("end");
         })
       )
-      .pipe(twig())
-      .on("error", function (err) {
-        process.stderr.write(err.message + "\n");
-        this.emit("end");
-      })
+      .pipe(
+        data(function () {
+          return JSON.parse(
+            fs.readFileSync(paths.data.src + path.basename("default.json"))
+          );
+        }).on("error", function (err) {
+          process.stderr.write(err.message + "\n");
+          this.emit("end");
+        })
+      )
+      .pipe(
+        twig().on("error", function (err) {
+          process.stderr.write(err.message + "\n");
+          this.emit("end");
+        })
+      )
       .pipe(gulp.dest(paths.templates.dest))
   );
 }

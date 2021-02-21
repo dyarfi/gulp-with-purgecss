@@ -1,38 +1,333 @@
-<html>
-<head>
-<link rel="stylesheet" href="./styles/main.min.css"/>
-</head>
-<body>
-<p>
-Dolore est non eiusmod voluptate occaecat aliquip aute pariatur ea velit commodo. Deserunt Lorem enim cillum duis eu anim cupidatat exercitation duis cupidatat dolor amet nisi. Fugiat cupidatat laboris dolor ad voluptate incididunt velit magna proident duis. Ipsum fugiat voluptate mollit nisi nisi commodo enim nulla adipisicing commodo fugiat enim esse.
+{% extends "_layouts/default.twig" %}
 
-Sunt exercitation in voluptate tempor excepteur. Duis elit labore nulla nostrud incididunt. Est sint dolor amet consequat sunt amet ex ullamco irure do et aute. Elit culpa aliquip ex mollit veniam nulla quis aliquip consequat consequat in enim enim. Cupidatat cupidatat ea quis ea enim ea id aliqua sint incididunt ea exercitation labore. Cillum et deserunt mollit eu.
+{% block content %}
+                                
+                <!-- SECTION HOME -->
+                <section class="section" id="section-home">
+                    <div class="container my-4">
+                        <div id="myCarousel">
+                            <!--ol class="carousel-indicators">
+                                <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                                <li data-target="#myCarousel" data-slide-to="1"></li>
+                                <li data-target="#myCarousel" data-slide-to="2"></li>
+                            </ol-->
+                            <div class="banner-carousel">
+                            {% for i, slider in sliders %}
 
-Aliquip adipisicing ad dolor ea aute non sit quis excepteur sunt et cupidatat qui exercitation. Elit commodo magna amet excepteur elit officia esse occaecat quis nisi ex magna sit. Consectetur id eu incididunt eiusmod ad duis ea id sit aliqua do veniam.
+                                <div class="carousel-item{{i==0?' active':''}}">
+                                    <img class="second-slide img-fluid img-thumbnail" src="{{slider.image}}" alt="Second slide">	
+                                    <div class="container">
+                                        <div class="carousel-caption {{slider.align ? slider.align: ''}}">
+                                            <h1>{{slider.title}}</h1>
+                                            <p>{{slider.description}}</p>
+                                            <a class="btn btn-lg {{slider.link_theme}}" href="{{slider.link}}" role="button"><i class="{{slider.link_icon}}" aria-hidden="true"></i> {{slider.link_title}}</a>
+                                        </div>
+                                    </div>
+                                </div>                                                    
+                            {% endfor %}
 
-Adipisicing adipisicing esse labore esse officia excepteur aute cupidatat anim in Lorem consectetur sit aute. Laborum pariatur ipsum eiusmod laborum laboris. Duis nisi ad ea mollit ea voluptate id qui labore elit pariatur Lorem cillum laborum. Consequat et do eiusmod nostrud excepteur irure deserunt id excepteur laborum tempor sint esse. Qui voluptate ipsum qui nisi commodo ipsum laborum officia cupidatat ea tempor. Velit ipsum nisi veniam cupidatat sint et esse culpa eu id.
+                            </div>
+                            <!--a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="sr-only">Previous</span>
+                            </a>
+                            <a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="sr-only">Next</span>
+                            </a-->
+                        </div>
+                    </div>
+                </section>
 
-Officia id ad incididunt culpa mollit Lorem ea cupidatat aute. Ex proident amet culpa excepteur dolor aliqua proident laborum. Ad anim amet ex labore deserunt nisi. Irure eu veniam in est ullamco eu qui qui Lorem in laborum anim. Ex ex magna aute veniam eu laboris nostrud non in.
+                <!-- SECTION CONTENT -->
+                <section class="section" id="section-content">
+                    <div class="container">
+                        <div class="row-fluid">
+                            <h3 class="header-am">Latest Customs</h3>
+                            <!-- <h5 class="text-muted">What makes our custom great is our best talented staffs</h5> -->
+                            <div class="row my-4">
+                                <div class="card-group">
+                                    <div class="col-md-3 py-3">
+                                        <div class="card align-items-center">
+                                            <figure class="gray imghvr-shutter-in-out-diag-1"><img src="./assets/img/custom1.jpg" data-src="holder.js/240x240/auto" alt="example-image">
+                                                <figcaption class="text-center">
+                                                    <h5>CB100 Classic Ride Custom Build</h5>
+                                                    <p class="text-muted">Street Bikes</p>
+                                                    <a href="custom_detail.html"><i class="fas fa-search"></i></a>
+                                                </figcaption>
+                                            </figure>
+                                            <div class="card-body text-center bg-dark">
+                                                <div class="card-title"><h5><a href="custom_detail.html">CB100 Classic Ride Custom Build</a></h5></div>
+                                                <p>Customized for enjoying the steet ride.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 py-3">
+                                        <div class="card">
+                                            <figure class="gray imghvr-shutter-in-out-diag-1"><img src="./assets/img/custom2.jpg" data-src="holder.js/240x240/auto" alt="example-image">
+                                                <figcaption class="text-center">
+                                                    <h5>Honda Black Bomber 1966 Classic</h5>
+                                                    <p class="text-muted">Classic custom</p>
+                                                    <a href="custom_detail.html"><i class="fas fa-search"></i></a>
+                                                </figcaption>
+                                            </figure>
+                                            <div class="card-body text-center bg-dark">
+                                                <div class="card-title"><h5><a href="custom_detail.html">Honda Black Bomber 1966 Classic</a></h5></div>
+                                                <p>Owner's wanted to have a new classic touch.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 py-3">
+                                        <div class="card">
+                                            <figure class="gray imghvr-shutter-in-out-diag-1"><img src="./assets/img/custom3.jpg" data-src="holder.js/240x240/auto" alt="example-image">
+                                                <figcaption class="text-center">
+                                                    <h5>Honda CB450T Hawk 82 Cafe Racer</h5>
+                                                    <p class="text-muted">Cafe Racer</p>
+                                                    <a href="custom_detail.html"><i class="fas fa-search"></i></a>
+                                                </figcaption>
+                                            </figure>
+                                            <div class="card-body text-center bg-dark">
+                                                <div class="card-title"><h5><a href="custom_detail.html">Honda CB450T Hawk 82 Cafe Racer</a></h5></div>
+                                                <p>Custom build into cafe racer motorbike.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 py-3">
+                                        <div class="card">
+                                            <figure class="gray imghvr-shutter-in-out-diag-1"><img src="./assets/img/custom4.jpg" data-src="holder.js/240x240/auto" alt="example-image">
+                                                <figcaption class="text-center">
+                                                    <h5>Honda CB450T Hawk 82 Cafe Racer</h5>
+                                                    <p class="text-muted">Cafe Racer</p>
+                                                    <a href="custom_detail.html"><i class="fas fa-search"></i></a>
+                                                </figcaption>
+                                            </figure>
+                                            <div class="card-body text-center bg-dark">
+                                                <div class="card-title"><h5><a href="custom_detail.html">1941 Harley Davidson Knucklehead</a></h5></div>
+                                                <p>Vintage ride for living the memories.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div> 
+                        </div> 
+                    </div>				
+                </section>
 
-Anim quis fugiat duis ex minim proident deserunt. Voluptate tempor ut ut Lorem minim aliquip. Fugiat eiusmod commodo sit et ea nisi eiusmod occaecat officia. Cillum laboris reprehenderit est eiusmod irure amet officia ullamco qui exercitation laborum.
+                <!-- SECTION SERVICES -->
+                <section class="section" id="section-services">
+                    <div class="container">
+                        <h3 class="header-am">Our Services</h3>
+                        <div class="my-4">
+                            <hr class="mm-divider">
+                            <div class="row">
+                                <div class="col-md-9">
+                                    <h4 class="mm-heading">Classic Restore. <span class="text-muted">Old School Motorcycles.</span></h4>
+                                    <p class="text-muted">
+                                        With network of physical devices, vehicles, home appliances, and other items embedded with electronics, software, sensors, actuators, and network connectivity which enable these objects to connect and exchange data. Each thing is uniquely identifiable through its embedded computing system but is able to inter-operate within the existing Internet infrastructure. Experts estimate that the IoT will consist of about 30 billion objects by 2020.
+                                    </p>
+                                </div>
+                                <div class="col-md-3 text-right">
+                                    <a href="services.html"><img class="img-thumbnail ilist-c img-fluid mx-auto" src="assets/img/service1.jpg" data-src="holder.js/360x360/auto" alt="Classic Restore"></a>
+                                </div>
+                            </div>
+                            <hr class="mm-divider">
+                            <div class="row">
+                                <div class="col-md-9 order-md-2">
+                                    <h4 class="featurette-heading">Exterior and Interior. <span class="text-muted">Revive Dream Ride to Life.</span></h4>
+                                    <p class="text-muted">
+                                        The world's technological per-capita capacity to store information has roughly doubled every 40 months since the 1980s as of 2012, every day 2.5 exabytes (2.5×1018) of data are generated. By 2025, IDC predicts there will be 163 zettabytes of data.
+                                        One question for large enterprises is determining who should own big-data initiatives that affect the entire organization.
+                                    </p>
+                                </div>
+                                <div class="col-md-3 order-md-1">
+                                    <a href="services.html"><img class="img-thumbnail ilist-c img-fluid mx-auto" src="assets/img/service3.jpg" data-src="holder.js/360x360/auto" alt="Exterior and Interior"></a>
+                                </div>
+                            </div>
+                            <hr class="mm-divider">
+                            <div class="row">
+                                <div class="col-md-9">
+                                    <h4 class="featurette-heading">Engine Boost. <span class="text-muted">Tuning up the Power.</span></h4>
+                                    <p class="text-muted">
+                                        Data sets grow rapidly - in part because they are increasingly gathered by cheap and numerous information-sensing Internet of things devices such as mobile devices, aerial (remote sensing), software logs, cameras, microphones, radio-frequency identification (RFID) readers and wireless sensor networks.
+                                    </p>
+                                </div>
+                                <div class="col-md-3 text-right">
+                                    <a href="services.html"><img class="img-thumbnail ilist-c img-fluid mx-auto" src="assets/img/service2.jpg" data-src="holder.js/360x360/auto" alt="Engine Boost"></a>
+                                </div>
+                            </div>
+                            <hr class="mm-divider">
+                        </div>
+                    </div>	
+                </section>
 
-Aliquip dolore duis mollit elit incididunt. Id amet pariatur pariatur aliqua magna nisi mollit culpa culpa ipsum velit deserunt minim. Voluptate id minim consectetur excepteur cillum ullamco anim ex.
-
-Consequat dolor adipisicing deserunt dolore dolor velit est pariatur. Ex magna voluptate sint commodo. Nulla labore sint exercitation commodo. Lorem ipsum quis commodo aliquip qui aute est minim sunt ea id. Nulla enim eu laboris labore Lorem adipisicing nostrud commodo.
-
-Mollit adipisicing sint nulla adipisicing magna do ad dolore elit laborum laboris. Ut labore officia nulla laborum excepteur sit duis ipsum dolor. Cillum laboris eiusmod cillum cillum reprehenderit fugiat aute. Nostrud ullamco cillum officia consequat. Nostrud reprehenderit ut in labore laborum aliqua elit cupidatat ex proident.
-
-Consequat dolor ullamco fugiat nulla occaecat ex irure dolore minim. Occaecat nulla nulla aliqua dolore amet tempor pariatur exercitation mollit et in in. Sit laboris enim consectetur cupidatat mollit ullamco mollit commodo et aliquip.
-</p>
-<p>
-Est ea minim aute minim ea eu occaecat. Adipisicing dolor dolor incididunt commodo eu irure duis consequat ut. Cupidatat cupidatat exercitation voluptate duis quis irure labore qui in mollit ut aliqua occaecat. Aute anim irure est non aliquip magna fugiat Lorem. Dolore laboris labore nulla culpa ea incididunt nulla anim enim veniam exercitation.
-
-Ullamco nostrud officia tempor enim velit aute sunt ipsum veniam sint eiusmod duis quis. Cillum elit ut ipsum nulla nulla in tempor ullamco duis ea tempor irure sit. Eiusmod occaecat occaecat voluptate fugiat elit laborum dolor nisi veniam aliqua ea ut enim laboris.
-
-Esse consectetur sint adipisicing eiusmod culpa est. Anim nostrud velit ea ipsum nisi duis pariatur. Aute ipsum occaecat labore sint do aliquip. Ex ad aliquip ipsum ipsum fugiat commodo nostrud eiusmod officia. Officia laborum consectetur ad et do irure amet incididunt anim sunt exercitation ad do. In veniam labore aliqua irure reprehenderit ipsum elit.
-</p>
-<div class="container">aasdasd</div>
-<span class="d-none"></span>
-<footer></footer>
-</body>
-</html>
+                <!-- SECTION TESTIMONIAL -->	
+                <section class="section" id="section-testimonial">
+                    <div class="container">
+                        <h4 class="header-am">Client Testimonial</h4>
+                        <div class="row testimonial">
+                            <div class="col-md-4">
+                                <div class="text-center">
+                                    <img class="img-thumbnail rounded-circle my-3 w-75 ilist-c" src="assets/img/testimonial2.jpg" data-src="assets/img/testimonial2.jpg" data-src-retina="assets/img/testimonial2.jpg" alt="Client Testimonial 2">							
+                                </div>
+                                <blockquote class="blockquote mb-0 card-body">
+                                    <p>This dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+                                    <footer class="blockquote-footer">
+                                        <small class="text-muted">
+                                        Someone famous in <cite title="Source Title">Source Title</cite>
+                                        </small>
+                                    </footer>
+                                </blockquote>
+                            </div><!-- /.col-md-4 -->
+                            <div class="col-md-4">
+                                <div class="text-center">
+                                    <img class="img-thumbnail rounded-circle my-3 w-75 ilist-c" src="assets/img/testimonial1.jpg" data-src="assets/img/testimonial1.jpg" data-src-retina="assets/img/testimonial1.jpg" alt="Client Testimonial 1">
+                                </div>	
+                                <blockquote class="blockquote mb-0 card-body">
+                                    <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Cras mattis consectetur purus sit amet fermentum.</p>
+                                    <footer class="blockquote-footer">
+                                        <small class="text-muted">
+                                        Someone famous in <cite title="Source Title">Source Title</cite>
+                                        </small>
+                                    </footer>
+                                </blockquote>
+                            </div><!-- /.col-md-4 -->
+                            <div class="col-md-4">
+                                <div class="text-center">
+                                    <img class="img-thumbnail rounded-circle my-3 w-75 ilist-c" src="assets/img/testimonial3.jpg" data-src="assets/img/testimonial3.jpg" data-src-retina="assets/img/testimonial3.jpg" alt="Client Testimonial 3">
+                                </div>
+                                <blockquote class="blockquote mb-0 card-body">
+                                    <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper.</p>
+                                    <footer class="blockquote-footer">
+                                        <small class="text-muted">
+                                        Someone famous in <cite title="Source Title">Source Title</cite>
+                                        </small>
+                                    </footer>
+                                </blockquote>
+                            </div><!-- /.col-md-4 -->
+                            <div class="col-md-4">
+                                <div class="text-center">
+                                    <img class="img-thumbnail rounded-circle my-3 w-75 ilist-c" src="assets/img/testimonial1.jpg" data-src="assets/img/testimonial1.jpg" data-src-retina="assets/img/testimonial1.jpg" alt="Client Testimonial 1">
+                                </div>	
+                                <blockquote class="blockquote mb-0 card-body">
+                                    <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Cras mattis consectetur purus sit amet fermentum.</p>
+                                    <footer class="blockquote-footer">
+                                        <small class="text-muted">
+                                        Someone famous in <cite title="Source Title">Source Title</cite>
+                                        </small>
+                                    </footer>
+                                </blockquote>
+                            </div><!-- /.col-md-4 -->     
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- SECTION WEARABLE -->
+                <section class="section" id="section-wearable">
+                    <div class="container">
+                        <h3 class="header-am">Wearables</h3>
+                        <p class="text-muted text-center">Our apparels, cap, stuff and wearables.</p>
+                        <div class="my-5">
+                            <div class="card-columns">
+                                <div class="card">					
+                                    <img class="card-img-top img-fluid ilist-c" src="./assets/img/wearable4.jpg" data-src="holder.js/227x160/auto" alt="Card image cap">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Card title that wraps to a new line</h5>
+                                        <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                                        <ul class="list-inline">
+                                            <li class="list-inline-item"><a href="javascript:;" title="List Item"><span class="fa fa-tag"></span> T-Shirt</a></li>
+                                            <li class="list-inline-item"><a href="javascript:;" title="List Item"><span class="fa fa-money-bill-alt"></span> $ 12</a></li>
+                                            <li class="list-inline-item"><a href="shop.html" target="_blank" title="List Item"><span class="fa fa-cart-plus"></span> Buy</a></li>
+                                        </ul>
+                                    </div>
+                                </div>						
+                                <div class="card">
+                                    <img class="card-img-top img-fluid ilist-c" src="./assets/img/wearable1.jpg" data-src="holder.js/227x160/auto" alt="Card image cap">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Card title that wraps to a new line</h5>
+                                        <p class="card-text">This dolor sit amet consectetur adipisicing elit!</p>
+                                        <ul class="list-inline">
+                                            <li class="list-inline-item"><a href="javascript:;" title="List Item"><span class="fa fa-tag"></span> T-Shirt</a></li>
+                                            <li class="list-inline-item"><a href="javascript:;" title="List Item"><span class="fa fa-money-bill-alt"></span> $ 11</a></li>
+                                            <li class="list-inline-item"><a href="shop.html" target="_blank" title="List Item"><span class="fa fa-cart-plus"></span> Buy</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="card">
+                                    <img class="card-img-top img-fluid ilist-c" src="./assets/img/wearable6.jpg" data-src="holder.js/227x160/auto" alt="Card image cap">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Card title that wraps to a new line</h5>
+                                        <p class="card-text">This dolor sit amet consectetur, adipisicing elit. Reiciendis repellendus modi accusamus enim animi.</p>
+                                        <ul class="list-inline">
+                                            <li class="list-inline-item"><a href="javascript:;" title="List Item"><span class="fa fa-tag"></span> T-Shirt</a></li>
+                                            <li class="list-inline-item"><a href="javascript:;" title="List Item"><span class="fa fa-money-bill-alt"></span> $ 13</a></li>
+                                            <li class="list-inline-item"><a href="shop.html" target="_blank" title="List Item"><span class="fa fa-cart-plus"></span> Buy</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="card">
+                                    <img class="card-img-top img-fluid ilist-c" src="./assets/img/wearable5.jpg" data-src="holder.js/227x160/auto" alt="Card image cap">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Card title that wraps to a new line</h5>
+                                        <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                                        <ul class="list-inline">
+                                            <li class="list-inline-item"><a href="" title="List Item"><span class="fa fa-tag"></span> Hoodie</a></li>
+                                            <li class="list-inline-item"><a href="" title="List Item"><span class="fa fa-money-bill-alt"></span> $ 88</a></li>
+                                            <li class="list-inline-item"><a href="shop.html" target="_blank" title="List Item"><span class="fa fa-cart-plus"></span> Buy</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="card">
+                                    <img class="card-img-top img-fluid ilist-c" src="./assets/img/wearable2.jpg" data-src="holder.js/227x160/auto" alt="Card image cap">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Card title that wraps to a new line</h5>
+                                        <p class="card-text">This dolor sit amet a little bit longer.</p>
+                                        <ul class="list-inline">
+                                            <li class="list-inline-item"><a href="javascript:;" title="List Item"><span class="fa fa-tag"></span> Leather Jacket</a></li>
+                                            <li class="list-inline-item"><a href="javascript:;" title="List Item"><span class="fa fa-money-bill-alt"></span> $ 110</a></li>
+                                            <li class="list-inline-item"><a href="shop.html" target="_blank" title="List Item"><span class="fa fa-cart-plus"></span> Buy</a></li>
+                                        </ul>
+                                    </div>
+                                </div>		
+                                <div class="card">
+                                    <img class="card-img-top img-fluid ilist-c" src="./assets/img/wearable8.jpg" data-src="holder.js/227x160/auto" alt="Card image cap">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Card title that wraps to a new line</h5>
+                                        <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                                        <ul class="list-inline">
+                                            <li class="list-inline-item"><a href="javascript:;" title="List Item"><span class="fa fa-tag"></span> Long Sleeves</a></li>
+                                            <li class="list-inline-item"><a href="javascript:;" title="List Item"><span class="fa fa-money-bill-alt"></span> $ 15</a></li>
+                                            <li class="list-inline-item"><a href="shop.html" target="_blank" title="List Item"><span class="fa fa-cart-plus"></span> Buy</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="card">
+                                    <img class="card-img-top img-fluid ilist-c" src="assets/img/wearable7.jpg" data-src="holder.js/227x160/auto" alt="Card image cap">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Card title that wraps to a new line</h5>
+                                        <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                                        <ul class="list-inline">
+                                            <li class="list-inline-item"><a href="javascript:;" title="List Item"><span class="fa fa-tag"></span> T-Shirt</a></li>
+                                            <li class="list-inline-item"><a href="javascript:;" title="List Item"><span class="fa fa-money-bill-alt"></span> $ 12</a></li>
+                                            <li class="list-inline-item"><a href="shop.html" target="_blank" title="List Item"><span class="fa fa-cart-plus"></span> Buy</a></li>
+                                        </ul>
+                                    </div>
+                                </div>		
+                                <div class="card">
+                                    <img class="card-img-top img-fluid ilist-c" src="assets/img/wearable3.jpg" data-src="holder.js/227x160/auto" alt="Card image cap">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Card title that wraps to a new line</h5>
+                                        <p class="card-text">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vitae, officiis.</p>
+                                        <ul class="list-inline">
+                                            <li class="list-inline-item"><a href="javascript:;" title="List Item"><span class="fa fa-tag"></span> T-Shirt</a></li>
+                                            <li class="list-inline-item"><a href="javascript:;" title="List Item"><span class="fa fa-money-bill-alt"></span> $ 12</a></li>
+                                            <li class="list-inline-item"><a href="shop.html" target="_blank" title="List Item"><span class="fa fa-cart-plus"></span> Buy</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="container waypoint-handler"></div>
+                    </div>
+                </section>
+                
+{% endblock %}

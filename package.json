@@ -1,13 +1,14 @@
 {
-  "name":"gulp-with-purgecss",
-  "author":"Defrian Yarfi",
-  "homepage":"https://dyarfi.github.io",
+  "name": "gulp-with-purgecss",
+  "author": "Defrian Yarfi",
+  "homepage": "https://dyarfi.github.io",
   "devDependencies": {
     "@babel/core": "^7.12.16",
     "@babel/preset-env": "^7.12.16",
     "@babel/register": "^7.12.13"
   },
   "dependencies": {
+    "bootstrap": "^4.6.0",
     "browser-sync": "^2.26.14",
     "del": "^6.0.0",
     "fs": "^0.0.1-security",
