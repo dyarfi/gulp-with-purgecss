@@ -194,7 +194,7 @@ export function browserSyncWatch() {
     server: {
       baseDir: paths.templates.dest,
     },
-    // notify: false,
+    notify: false,
     browser: "google chrome",
   });
 }

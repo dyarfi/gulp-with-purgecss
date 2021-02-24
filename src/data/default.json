@@ -3,6 +3,11 @@
   "theme": {
     "color": "#cccccc"
   },
+  "site":{
+    "title":"Gulp.js, SCSS, Twig and PurgeCSS",
+    "description":"Web templates in Gulp.js, SCSS, Twig and PurgeCSS",
+    "author": "Dyarfi"
+  },
   "twitter": {
     "card": "summary_large_image",
     "site": "@dykraf",
