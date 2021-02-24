@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="zxx">
+	
+  <head>
+  	
+    <!-- Theme Color -->
+    <meta name="theme-color" content="#FA622B">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    {% include "../_includes/global/head.twig" %}
+  </head>
+
+<body>	
+    <!-- HEADER -->
+    {% include "../_includes/header.twig" %}
+    
+    <!-- MAIN -->
+    <main>
+		{% block content %}
+
+		{% endblock %}
+    </main>
+
+    <!-- FOOTER -->
+    {% include "../_includes/footer.twig" %}
+    
+    <!-- SCRIPTS -->
+    {% include "../_includes/global/scripts.twig" %}
+
+</body>
+</html>

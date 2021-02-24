@@ -1,22 +1,23 @@
-import gulp from "gulp";
-import { series, parallel } from "gulp";
+import { src, dest, series, parallel, watch } from "gulp";
+
 import sass from "gulp-sass";
 import babel from "gulp-babel";
 import concat from "gulp-concat";
 import uglify from "gulp-uglify";
 import rename from "gulp-rename";
-
-import fs from "fs";
-import del from "del";
-import path from "path";
 import data from "gulp-data";
 import twig from "gulp-twig";
-import browsersync from "browser-sync";
 import gulpcopy from "gulp-copy";
 import plumber from "gulp-plumber";
 import sourcemaps from "gulp-sourcemaps";
 import prefix from "gulp-autoprefixer";
 import purge from "gulp-purgecss";
+
+import Browsersync from "browser-sync";
+
+import fs from "fs";
+import del from "del";
+import path from "path";
 
 // Paths
 const paths = {
@@ -43,17 +44,20 @@ const paths = {
   },
 };
 
+// Create browser-sync
+Browsersync.create();
+
 // Clean assets
 export const cleanAssets = () => del([paths.assets.dest]);
 
 // styles
-export function styles() {
-  return gulp
-    .src([
-      paths.styles.src,
-      "!" + paths.styles.dir + "themes/**/*.scss",
-      "!" + paths.styles.dir + "vendors/**/*.scss",
-    ])
+export function styles(done) {
+  // return src([
+  src([
+    paths.styles.src,
+    "!" + paths.styles.dir + "themes/**/*.scss",
+    "!" + paths.styles.dir + "vendors/**/*.scss",
+  ])
     .pipe(sourcemaps.init())
     .pipe(
       sass({
@@ -89,139 +93,154 @@ export function styles() {
       })
     )
     .pipe(sourcemaps.write("."))
-    .pipe(gulp.dest(paths.styles.dest));
+    .pipe(dest(paths.styles.dest))
+    .pipe(Browsersync.stream());
+  done();
 }
 
 // Scripts
-export function scripts() {
-  return gulp
-    .src(paths.scripts.src, { sourcemaps: true })
+export function scripts(done) {
+  src(paths.scripts.src, { sourcemaps: true })
     .pipe(babel())
     .pipe(uglify())
     .pipe(concat("main.min.js"))
-    .pipe(gulp.dest(paths.scripts.dest));
+    .pipe(dest(paths.scripts.dest))
+    .pipe(Browsersync.stream());
+  done();
 }
 
 // Templates
-export function templates() {
-  return (
-    gulp
-      .src([
-        paths.templates.src,
-        "!" + paths.templates.dir + "_blocks/**/*.twig",
-        "!" + paths.templates.dir + "_includes/**/*.twig",
-        "!" + paths.templates.dir + "_layouts/**/*.twig",
-      ])
-      // Stay live and reload on error
-      .pipe(
-        plumber({
-          handleError: function (err) {
-            console.log(err);
-            this.emit("end");
-          },
-        })
-      )
-      // Load template pages json data
-      .pipe(
-        data(function (file) {
-          return JSON.parse(
-            fs.readFileSync(
-              paths.data.src +
-                path.basename(file.path.replace(".twig", "")) +
-                ".json"
-            )
-          );
-        }).on("error", function (err) {
-          process.stderr.write(err.message + "\n");
+export function templates(done) {
+  src([
+    paths.templates.src,
+    "!" + paths.templates.dir + "_blocks/**/*.twig",
+    "!" + paths.templates.dir + "_includes/**/*.twig",
+    "!" + paths.templates.dir + "_layouts/**/*.twig",
+  ])
+    // Stay live and reload on error
+    .pipe(
+      plumber({
+        handleError: function (err) {
+          console.log(err);
           this.emit("end");
-        })
-      )
-      .pipe(
-        data(function () {
-          return JSON.parse(
-            fs.readFileSync(paths.data.src + path.basename("default.json"))
-          );
-        }).on("error", function (err) {
-          process.stderr.write(err.message + "\n");
-          this.emit("end");
-        })
-      )
-      .pipe(
-        twig().on("error", function (err) {
-          process.stderr.write(err.message + "\n");
-          this.emit("end");
-        })
-      )
-      .pipe(gulp.dest(paths.templates.dest))
-  );
+        },
+      })
+    )
+    // Load template pages json data
+    .pipe(
+      data(function (file) {
+        return JSON.parse(
+          fs.readFileSync(
+            paths.data.src +
+              path.basename(file.path.replace(".twig", "")) +
+              ".json"
+          )
+        );
+      }).on("error", function (err) {
+        process.stderr.write(err.message + "\n");
+        this.emit("end");
+      })
+    )
+    .pipe(
+      data(function () {
+        return JSON.parse(
+          fs.readFileSync(paths.data.src + path.basename("default.json"))
+        );
+      }).on("error", function (err) {
+        process.stderr.write(err.message + "\n");
+        this.emit("end");
+      })
+    )
+    .pipe(
+      twig().on("error", function (err) {
+        process.stderr.write(err.message + "\n");
+        this.emit("end");
+      })
+    )
+    .pipe(dest(paths.templates.dest))
+    .pipe(Browsersync.stream());
+  done();
 }
 
 // Copy assets
 export function copyAssets() {
   // Copy assets
-  return gulp
-    .src(
-      [
-        paths.assets.src,
-        "!" + paths.assets.src + ".psd",
-        "!" + paths.assets.src + ".*.map",
-      ],
-      cleanAssets
-    )
-    .pipe(gulpcopy(paths.assets.dest, { prefix: 2 }));
+  return src(
+    [
+      paths.assets.src,
+      "!" + paths.assets.src + ".psd",
+      "!" + paths.assets.src + ".*.map",
+    ],
+    cleanAssets
+  )
+    .pipe(gulpcopy(paths.assets.dest, { prefix: 2 }))
+    .pipe(Browsersync.stream());
+  // done();
 }
-
-// BrowserSync reload
-export function browserReload() {
-  return browsersync.reload;
-}
-
 // Purge UnusedCSS
 export function purgeCSS() {
-  return gulp
-    .src(paths.styles.dest + "*.css")
+  return src(paths.styles.dest + "*.css")
     .pipe(
       purge({
         content: [paths.templates.dest + "*.html"],
       })
     )
-    .pipe(gulp.dest(paths.styles.dest));
+    .pipe(dest(paths.styles.dest));
 }
 
 // BrowserSync
-function browserSync() {
-  browsersync({
+export function browserSyncWatch() {
+  return Browsersync.init({
     server: {
       baseDir: paths.templates.dest,
     },
-    notify: false,
+    // notify: false,
     browser: "google chrome",
-    // proxy: "0.0.0.0:5000"
   });
 }
 
+// BrowserSync reload
+export function browserReload(done) {
+  Browsersync.reload;
+  done();
+}
+
 // Watch files
-function watchFiles() {
-  gulp.watch(paths.scripts.src, scripts).on("change", browserReload());
-  gulp
-    .watch(paths.styles.src, styles)
-    .on("change", parallel(styles), browserReload());
+export function watchFiles() {
+  // Watch scripts changes
+  watch(paths.scripts.src, series(scripts, browserReload)).on(
+    "change",
+    function (file) {
+      console.log("file change:", file);
+    }
+  );
+  // Watch styles changes
+  watch(paths.styles.src, series(styles, browserReload)).on(
+    "change",
+    function (file) {
+      console.log("file change:", file);
+    }
+  );
   // Watch template changes
-  gulp
-    .watch([paths.templates.src, paths.data.src], parallel(templates))
-    .on("change", browserReload());
-  // Watch assets changes
-  // Assets Watch and copy to build in some file changes
-  gulp
-    .watch([
+  watch(
+    [paths.templates.src, paths.data.src],
+    series(templates, browserReload)
+  ).on("change", function (file) {
+    console.log("file change:", file);
+  });
+  // Watch assets changes and copy to build in some file changes
+  watch(
+    [
       paths.assets.src,
       "!" + paths.assets.src + ".psd",
       "!" + paths.assets.src + ".*.map",
-    ])
-    .on("change", series(cleanAssets, copyAssets, browserReload()));
+    ],
+    series(cleanAssets, copyAssets, browserReload)
+  );
+  watch("gulpfile.babel.js").on("change", () => process.exit(0));
 }
 
-const watching = parallel(watchFiles, browserSync);
+const watching = parallel(watchFiles, browserSyncWatch);
 const build = series(
   parallel(copyAssets, styles, scripts, templates),
   purgeCSS

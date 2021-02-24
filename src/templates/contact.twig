@@ -1,0 +1,86 @@
+{% extends "_layouts/default.twig" %}
+
+{% block content %}
+            
+                <!-- Content section -->
+                <section class="section" id="section-custom">
+                    <div class="container">
+                        <div class="text-center overflow-hide"><h4 class="header-ams">Contact Us</h4></div>
+                        <!--div class="row mb-4">
+                            <img src="" data-src="holder.js/1200x300/auto" class="img-fluid img-thumbnail">
+                        </div-->			
+                        <div class="row">
+                            <div class="col-md-9 m-0 p-0">
+                                <!-- <img class="img-fluid" src="" data-src="holder.js/320px220?theme=thumb" alt="Map"/> -->
+                                <div class="embed-responsive embed-responsive-21by9 mb-3">
+                                    <iframe class="embed-responsive-item" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7228.687998810916!2d-73.57371572879505!3d45.49771427779953!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4cc91a6802ef36ff%3A0x112f006b9aeff7ae!2sCentre+Bell!5e0!3m2!1sen!2sid!4v1513762755854" height="250" frameborder="0" style="border:0" allowfullscreen></iframe>
+                                </div>
+                            </div>
+                            <div class="col-md-3 m-0 pr-0">
+                                <fieldset>
+                                    <legend><h5>Main Address</h5></legend>
+                                    <address><b class="clearfix">Centre Bell</b> 1909 Avenue des Canadiens-de-Montréal, Montréal, QC H4B 5G0, Canada</address>
+                                    <p>
+                                        <span><span class="fa fa-phone"></span> <a href="tel:9-000-999-0099">9-000-999-0099</a></span>
+                                        <span><span class="fa fa-fax"></span> <a href="tel:9-000-999-0099">9-000-999-0099</a></span>
+                                    </p>
+                                </fieldset>      
+                            </div>                    
+                        </div>
+                        <div class="text-center overflow-hide"><h4 class="header-ams">Form Contact</h4></div>
+                        <form class="form-horizontal">
+                            <div class="form-group">
+                                <div class="form-row">
+                                    <div class="col">
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text"><i class="fa fa-user"></i></span>
+                                            </div>									
+                                            <label for="name" class="sr-only">Name</label>
+                                            <input type="text" name="name" id="name" placeholder="Name" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text"><i class="fa fa-envelope"></i></span>
+                                            </div>									
+                                            <label for="email" class="sr-only">Email</label>
+                                            <input type="email" name="email" id="email" placeholder="Email" class="form-control">
+                                        </div>	
+                                    </div>					
+                                    <div class="col">	
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text"><i class="fa fa-phone"></i></span>
+                                            </div>				
+                                            <label for="phone" class="sr-only">Phone</label>
+                                            <input type="text" name="phone" id="phone" placeholder="Phone" class="form-control">
+                                        </div>	
+                                    </div>	
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="subject" class="sr-only">Subject</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text"><i class="fas fa-bell"></i></div>
+                                    </div>
+                                    <input type="text" name="subject" id="subject" placeholder="Subject" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="message" class="sr-only">Message</label>	
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text d-block"><i class="fas fa-comment-alt"></i></div>
+                                    </div>
+                                    <textarea name="message" id="message" class="form-control" placeholder="Message"></textarea>
+                                </div>			
+                            </div>
+                            <button class="btn btn-primary btn-block"> Submit </button>
+                        </form> 
+                    </div>
+                </section>
+
+{% endblock %}                
