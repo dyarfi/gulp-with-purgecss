@@ -177,12 +177,34 @@ export function copyAssets() {
     .pipe(Browsersync.stream());
   // done();
 }
+
 // Purge UnusedCSS
 export function purgeCSS() {
-  return src(paths.styles.dest + "*.css")
+  return src(paths.styles.dest + "*.min.css")
+    .pipe(
+      rename({
+        suffix: ".rejected",
+      })
+    )
     .pipe(
       purge({
         content: [paths.templates.dest + "*.html"],
+        // keyframes: true,
+        // variables: true,
+        rejected: true,
+        safelist: [
+          /col-[a-z\-0-9]+/gi,
+          /alert-[a-z-0-9]+/g,
+          /navbar-[a-z\-0-9]+/gi, // navbar-expand-(sizes)
+          /nav-[a-z\-0-9]+/gi, // nav-item, nav-link
+          /close+/g,
+          /collaps?(e|ing)+/g,
+        ],
+        whitelistPatterns: [
+          /-(leave|enter|appear)(|-(to|from|active))$/,
+          /^(?!(|.*?:)cursor-move).+-move$/,
+          /^router-link(|-exact)-active$/,
+        ],
       })
     )
     .pipe(dest(paths.styles.dest));
@@ -240,11 +262,12 @@ export function watchFiles() {
   watch("gulpfile.babel.js").on("change", () => process.exit(0));
 }
 
-const watching = parallel(watchFiles, browserSyncWatch);
-const build = series(
-  parallel(copyAssets, styles, scripts, templates),
-  purgeCSS
-);
+// Build first
+const building = parallel(copyAssets, templates, styles, scripts);
+// Watch later
+const watching = series(building, parallel(watchFiles, browserSyncWatch));
+// Production
+const build = series(building, purgeCSS);
 
 /*
  * Export a watch task

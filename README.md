@@ -31,3 +31,13 @@ gulp watch
 gulp
 
 ```
+
+PurgeCSS wil be executed in build stage. The file rejected or the unused CSS will be in `build/styles/main.min.rejected.css`.
+Change to `expanded` to `compact` in styles build at line 65 for minifying CSS output.
+
+```javascript
+sass({
+  // includePaths: [paths.sass + "vendors/"],
+  outputStyle: "compact", // compact
+});
+```

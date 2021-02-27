@@ -37,7 +37,7 @@ $theme-color: #cc9900 !default; // #cc9900
 $theme: $theme-color !default;
 
 // Background variables light
-$light-primary: lighten($primary, 25%);
+$light-primary: lighten($primary, 15%);
 $light-success: lighten($success, 25%);
 $light-warning: lighten($warning, 25%);
 $light-danger: lighten($danger, 25%);
@@ -58,9 +58,9 @@ $dark-theme: darken($theme, 32%);
 
 // Theme base
 @import "themes/base/path";
+@import "themes/base/base";
 @import "themes/base/placeholder";
 @import "themes/base/utility";
-@import "themes/base/base";
 
 // Theme components
 @import "themes/components/cards";

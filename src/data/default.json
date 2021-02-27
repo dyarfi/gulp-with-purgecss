@@ -4,8 +4,8 @@
     "color": "#cccccc"
   },
   "site":{
-    "title":"Gulp.js, SCSS, Twig and PurgeCSS",
-    "description":"Web templates in Gulp.js, SCSS, Twig and PurgeCSS",
+    "title":"Gulp.js, Scss, Twig and PurgeCSS",
+    "description":"Web templates in Gulp.js, Scss, Twig and PurgeCSS",
     "author": "Dyarfi"
   },
   "twitter": {

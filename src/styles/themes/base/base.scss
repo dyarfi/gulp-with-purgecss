@@ -1,6 +1,3 @@
-// @import "vendors/bootstrap/mixins";
-@import "placeholder";
-// @import "../vendors/variables";
 @import "../../vendors/vendor";
 @import "../../vendors/global";
 @import "../../vendors/bootstrap/variables";
@@ -10,7 +7,7 @@ $font-base-theme: "Raleway", sans-serif;
 $base-font-weight: 100;
 // $font-base-theme: "Montserrat", sans-serif;
 // $font-base-theme: "Playfair Display", sans-serif;
-// $font-base-head: 'Playfair Display', sans-serif;
+$font-base-head: "Playfair Display", sans-serif;
 
 /**
  * Basic styling
@@ -20,7 +17,7 @@ body {
     $font-base-theme;
   color: $body-color;
   background-color: $body-bg;
-  // text-size-adjust: 100%;
+  text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
   -webkit-font-feature-settings: "kern" 1;
   -moz-font-feature-settings: "kern" 1;
@@ -45,10 +42,15 @@ button:focus {
   outline: none;
 }
 // Set default font family for Headings
-// h1,h2,h3,h4,h5,h6,
-// #navbarResponsive {
-//     font-family: $font-base-head
-// }
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+#navbarResponsive {
+  font-family: $font-base-head;
+}
 /**
  * Utilities
  */

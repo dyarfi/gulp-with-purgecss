@@ -25,6 +25,13 @@
     <script src="./assets/vendors/modernizr.custom.js"></script>
     <script src="./assets/vendors/SmoothScroll.js"></script>
 
+    {% block scripts %}
+    {% if scripts %}
+    <script type="text/javascript">
+        {{ scripts }}
+    </script>
+    {% endif %}
+    {% endblock %}
 
     <!-- script.js -->
     <script src="./scripts/main.min.js"></script>
